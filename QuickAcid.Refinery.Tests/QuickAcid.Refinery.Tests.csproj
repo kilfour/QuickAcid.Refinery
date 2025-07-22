@@ -19,14 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="QuickExplainIt" Version="0.1.1" />
-    <PackageReference Include="QuickPulse" Version="0.1.3" />
+    <PackageReference Include="QuickPulse.Explains" Version="0.1.1" />
   </ItemGroup>
-  
-  <ItemGroup>
+
+  <!-- <ItemGroup>
     <ProjectReference Include="../../QuickAcid/QuickAcid/QuickAcid.csproj" />
     <ProjectReference Include="../../QuickMGenerate\QuickMGenerate\QuickMGenerate.csproj" />
-  </ItemGroup>
+  </ItemGroup> -->
 
   <ItemGroup>
     <ProjectReference Include="..\QuickAcid.Refinery\QuickAcid.Refinery.csproj" />
