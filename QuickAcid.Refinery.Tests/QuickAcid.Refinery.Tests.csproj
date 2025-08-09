@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
@@ -19,13 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="QuickPulse.Explains" Version="0.1.1" />
+    <PackageReference Include="QuickPulse.Explains" Version="0.2.0" />
   </ItemGroup>
-
-  <!-- <ItemGroup>
-    <ProjectReference Include="../../QuickAcid/QuickAcid/QuickAcid.csproj" />
-    <ProjectReference Include="../../QuickMGenerate\QuickMGenerate\QuickMGenerate.csproj" />
-  </ItemGroup> -->
 
   <ItemGroup>
     <ProjectReference Include="..\QuickAcid.Refinery\QuickAcid.Refinery.csproj" />
