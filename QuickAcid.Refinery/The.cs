@@ -13,8 +13,8 @@ public static class The
     private readonly static Flow<Unit> newLine = Pulse.Trace(Environment.NewLine);
 
     private readonly static Flow<Unit> indent =
-        from cast in Pulse.Gather<Cast>()
-        let indentString = new string(' ', cast.Value.Level * 4)
+        from cast in Pulse.Draw<Cast>()
+        let indentString = new string(' ', cast.Level * 4)
         from trace in Pulse.TraceIf<Cast>(a => a.NeedsIndent, () => indentString)
         select Unit.Instance;
 
@@ -27,7 +27,7 @@ public static class The
 
     private static Flow<object> Interspersed(Flow<object> flow) =>
         from input in Pulse.Start<object>()
-        from ministers in Pulse.Gather<Cast>()
+        from ministers in Pulse.Draw<Cast>()
         from seperator in Pulse.When<Cast>(a => a.Intersperse.Restricted(), Separator)
         let element = Pulse.ToFlow(flow, input)
         select input;
@@ -61,8 +61,8 @@ public static class The
 
     private static string FormatMethodName(string specName) => specName.Replace(" ", "_");
 
-    private readonly static Flow<TrackedDeposition> trackedDeposition =
-        from input in Pulse.Start<TrackedDeposition>()
+    private readonly static Flow<StashedDeposition> StashedDeposition =
+        from input in Pulse.Start<StashedDeposition>()
         let split = input.Label.Split(":")
         let val = split.Length == 2 ? split[1] : "true"
         from _ in indent
@@ -101,8 +101,8 @@ public static class The
 
     private readonly static Flow<ExecutionDeposition> executionDeposition =
         from input in Pulse.Start<ExecutionDeposition>()
-        from _ in Pulse.ToFlowIf<TrackedDeposition, Cast>(
-                a => a.Tracked.Passable(), trackedDeposition, () => input.TrackedDepositions)
+        from _ in Pulse.ToFlowIf<StashedDeposition, Cast>(
+                a => a.Tracked.Passable(), StashedDeposition, () => input.StashedDepositions)
         from __ in Pulse.ToFlow(actionDeposition, input.ActionDepositions.Select(a => new ActionWithInputs(a, input.InputDepositions)))
         select input;
 
@@ -161,7 +161,7 @@ public static class The
 
     public readonly static Flow<CaseFile> Anvil =
         from input in Pulse.Start<CaseFile>()
-        from _ in Pulse.Gather(new Cast())
+        from _ in Pulse.Prime(() => new Cast())
         from _1 in Pulse.Trace("namespace Refined.By.QuickAcid;").Then(newLine)
         from _2 in newLine
         from _3 in Pulse.Trace("public class UnitTests").Then(newLine)

@@ -22,7 +22,7 @@ public class VerdictTests
                 );
         var caseFile = CaseFile.WithVerdict(Verdict.FromDossier(dossier)
             .AddExecutionDeposition(new ExecutionDeposition(1)
-                .AddTrackedDeposition(new TrackedDeposition("account", "{ something irrelevant}"))
+                .AddStashedDeposition(new StashedDeposition("account", "{ something irrelevant}"))
                 .AddInputDeposition(new InputDeposition("withdraw", 42))
                 .AddActionDeposition(new ActionDeposition("account.Withdraw"))));
         var result = Fabricator.Forge(caseFile);
@@ -57,7 +57,7 @@ public class VerdictTests
                 );
         var caseFile = CaseFile.WithVerdict(Verdict.FromDossier(dossier)
             .AddExecutionDeposition(new ExecutionDeposition(1)
-                .AddTrackedDeposition(new TrackedDeposition("account", "{ something irrelevant}"))
+                .AddStashedDeposition(new StashedDeposition("account", "{ something irrelevant}"))
                 .AddInputDeposition(new InputDeposition("withdraw:1", 42))
                 .AddInputDeposition(new InputDeposition("withdraw:2", 666))
                 .AddActionDeposition(new ActionDeposition("account.Withdraw"))));
@@ -93,7 +93,7 @@ public class VerdictTests
                 );
         var caseFile = CaseFile.WithVerdict(Verdict.FromDossier(dossier)
             .AddExecutionDeposition(new ExecutionDeposition(1)
-                .AddTrackedDeposition(new TrackedDeposition("account", "{ 1 }"))
+                .AddStashedDeposition(new StashedDeposition("account", "{ 1 }"))
                 .AddInputDeposition(new InputDeposition("deposit", 100))
                 .AddActionDeposition(new ActionDeposition("account.Deposit"))
                 .AddInputDeposition(new InputDeposition("withdraw:1", 42))
@@ -132,12 +132,12 @@ public class VerdictTests
                 );
         var caseFile = CaseFile.WithVerdict(Verdict.FromDossier(dossier)
             .AddExecutionDeposition(new ExecutionDeposition(1)
-                .AddTrackedDeposition(new TrackedDeposition("account", "{ 1 }"))
+                .AddStashedDeposition(new StashedDeposition("account", "{ 1 }"))
                 .AddInputDeposition(new InputDeposition("deposit", 100))
                 .AddActionDeposition(new ActionDeposition("account.Deposit"))
                 .AddActionDeposition(new ActionDeposition("account.Deposit")))
             .AddExecutionDeposition(new ExecutionDeposition(2)
-                .AddTrackedDeposition(new TrackedDeposition("account", "{ 2 }"))
+                .AddStashedDeposition(new StashedDeposition("account", "{ 2 }"))
                 .AddInputDeposition(new InputDeposition("withdraw:1", 42))
                 .AddInputDeposition(new InputDeposition("withdraw:2", 666))
                 .AddActionDeposition(new ActionDeposition("account.Withdraw"))));
